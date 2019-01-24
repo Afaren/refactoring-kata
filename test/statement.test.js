@@ -1,9 +1,32 @@
 const statement = require('../src/statement')
-const invoices = require('../src/invoices')
-const plays = require('../src/plays')
 
 
-test('get target statement', () => {
+test('get build statement', () => {
+  const invoice =   {
+    "customer": "BigCo",
+    "performances": [
+      {
+        "playID": "hamlet",
+        "audience": 55
+      },
+      {
+        "playID": "as-like",
+        "audience": 35
+      },
+      {
+        "playID": "othello",
+        "audience": 40
+      }
+    ]
+  };
+
+  const plays = {
+    "hamlet": {"name": "Hamlet", "type": "tragedy"},
+    "as-like": {"name": "As You Like It", "type": "comedy"},
+    "othello": {"name": "Othello", "type": "tragedy"}
+  };
+
+
   let expectedStatement =`\
 Statement for BigCo
   Hamlet: $650.00 (55 seats)
@@ -12,5 +35,5 @@ Statement for BigCo
 Amount owed is $1,730.00
 You earned 47 credits
 `;
-  expect(statement(invoices[0], plays)).toBe(expectedStatement)
+  expect(statement(invoice, plays)).toBe(expectedStatement)
 })
