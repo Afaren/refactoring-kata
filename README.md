@@ -1,2 +1,10 @@
 # refactoring-kata
-refactoring kata in javascript
+
+
+## Run test
+
+
+## Refactor
+
+
+## Run Test
