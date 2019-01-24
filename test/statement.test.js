@@ -95,3 +95,23 @@ You earned 10 credits
   expect(statement(invoice, plays)).toBe(expectedStatement)
 })
 
+test('badType throw error', () => {
+  const plays = {
+    hamlet: { name: 'Hamlet', type: 'badType' },
+  };
+
+  const invoice = {
+    customer: 'BigCo',
+    performances: [
+      {
+        playID: 'hamlet',
+        audience: 55,
+      },
+    ],
+  };
+
+  expect(() => statement(invoice, plays))
+    .toThrow('unknown type: badType');
+});
+
+
